@@ -24,7 +24,7 @@ typedef struct args {
 
 args_t parseArgs(int argc, char** argv) {
     static const char* usage = "OVERVIEW: A RGB to VGA color converter \n\n"
-                               "USAGE: pixel2vga [ -<flag> [<val>] | --<name> [<val>] ]... <image file>\n\n"
+                               "USAGE: pixel2vga [options] <image file>\n\n"
                                "OPTIONS:\n"
                                "  -f, --format          File format[jpg/png/bmp/tga]\n"
                                "  -o, --outfile         Output file name\n"

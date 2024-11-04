@@ -13,7 +13,7 @@ pixel2vga is a command-line tool designed to convert RGB color values to the VGA
 ➜  ~ pixel2vga -h
 OVERVIEW: A RGB to VGA color converter 
 
-USAGE: pixel2vga [ -<flag> [<val>] | --<name> [<val>] ]... <image file>
+USAGE: pixel2vga [options] <image file>
 
 OPTIONS:
   -f, --format          File format[jpg/png/bmp/tga]
