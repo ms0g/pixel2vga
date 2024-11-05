@@ -262,7 +262,7 @@ static const float vga_palette[256][3] = {
         {F(0x00), F(0x00), F(0x00)},
 };
 
-color vgaclamp(uint8_t r, uint8_t g, uint8_t b) {
+const color vgaclamp(uint8_t r, uint8_t g, uint8_t b) {
     float rf = (float) r;
     float gf = (float) g;
     float bf = (float) b;

@@ -22,7 +22,7 @@ typedef struct args {
     char* outfile;
 } args_t;
 
-args_t parseArgs(int argc, char** argv) {
+static const args_t parseArgs(int argc, char** argv) {
     static const char* usage = "OVERVIEW: A RGB to VGA color converter\n\n"
                                "USAGE: pixel2vga [options] <image file>\n\n"
                                "OPTIONS:\n"
@@ -48,15 +48,14 @@ args_t parseArgs(int argc, char** argv) {
         if (!strcmp(argv[i], "-f") || !strcmp(argv[i], "--format")) {
             args.format = argv[++i];
 
-            if (strcmp(argv[i], "jpg") != 0 ||
-                strcmp(argv[i], "png") != 0 ||
-                strcmp(argv[i], "bmp") != 0 ||
-                strcmp(argv[i], "tga") != 0 ||
-                strcmp(argv[i], "raw") != 0) {
+            if (strcmp(args.format, "jpg") != 0 &&
+                strcmp(args.format, "png") != 0 &&
+                strcmp(args.format, "bmp") != 0 &&
+                strcmp(args.format, "tga") != 0 &&
+                strcmp(args.format, "raw") != 0) {
                 fprintf(stderr, "Unknown Format: %s\n", args.format);
                 return args;
             }
-
         } else if (!strcmp(argv[i], "-o") || !strcmp(argv[i], "--outfile")) {
             args.outfile = argv[++i];
         } else {
@@ -72,7 +71,7 @@ int main(int argc, char** argv) {
     uint8_t* vga_img = NULL;
     int width, height, channels;
 
-    args_t args = parseArgs(argc, argv);
+    const args_t args = parseArgs(argc, argv);
 
     if (args.image == NULL) {
         goto cleanup;
@@ -95,7 +94,7 @@ int main(int argc, char** argv) {
         uint8_t g = *(p + 1);
         uint8_t b = *(p + 2);
 
-        color vga_color = vgaclamp(r, g, b);
+        const color vga_color = vgaclamp(r, g, b);
 
         *pv = (uint8_t) vga_color.r;
         *(pv + 1) = (uint8_t) vga_color.g;
