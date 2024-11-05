@@ -329,9 +329,9 @@ static const float vga_palette[256][3] = {
 };
 
 color vgaclamp(uint8_t r, uint8_t g, uint8_t b) {
-    float rd = (float) r;
-    float gd = (float) g;
-    float bd = (float) b;
+    float rf = (float) r;
+    float gf = (float) g;
+    float bf = (float) b;
 
     float closest = +INFINITY;
     
@@ -343,7 +343,7 @@ color vgaclamp(uint8_t r, uint8_t g, uint8_t b) {
         float gs = sample[1];
         float bs = sample[2];
         
-        float dst = sqrtf(powf(rs - rd, 2) + powf(gs - gd, 2) + powf(bs - bd, 2));
+        float dst = sqrtf(powf(rs - rf, 2) + powf(gs - gf, 2) + powf(bs - bf, 2));
         
         if (dst < closest) {
             closest = dst;
