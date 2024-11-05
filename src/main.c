@@ -23,14 +23,15 @@ typedef struct args {
 } args_t;
 
 args_t parseArgs(int argc, char** argv) {
-    static const char* usage = "OVERVIEW: A RGB to VGA color converter \n\n"
+    static const char* usage = "OVERVIEW: A RGB to VGA color converter\n\n"
                                "USAGE: pixel2vga [options] <image file>\n\n"
                                "OPTIONS:\n"
                                "  -f, --format          File format[jpg/png/bmp/tga]\n"
                                "  -o, --outfile         Output file name\n"
                                "  -h, --help            Display available options\n"
                                "  -v, --version         Display the version of this program\n";
-    args_t args;
+
+    args_t args = {NULL, NULL, NULL};
     if (argc < 6) {
         if (argc == 2 && (!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help"))) {
             printf("%s", usage);
@@ -38,9 +39,9 @@ args_t parseArgs(int argc, char** argv) {
             printf("version %s", VERSION);
         } else {
             printf("%s", usage);
-            return (args_t) {NULL, NULL, NULL};
+            return args;
         }
-        return (args_t) {NULL, NULL, NULL};
+        return args;
     }
 
     for (int i = 1; i < argc; ++i) {
