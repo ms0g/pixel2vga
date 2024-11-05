@@ -26,7 +26,7 @@ args_t parseArgs(int argc, char** argv) {
     static const char* usage = "OVERVIEW: A RGB to VGA color converter\n\n"
                                "USAGE: pixel2vga [options] <image file>\n\n"
                                "OPTIONS:\n"
-                               "  -f, --format          File format[jpg/png/bmp/tga]\n"
+                               "  -f, --format          File format[jpg/png/bmp/tga/raw]\n"
                                "  -o, --outfile         Output file name\n"
                                "  -h, --help            Display available options\n"
                                "  -v, --version         Display the version of this program\n";
@@ -47,6 +47,16 @@ args_t parseArgs(int argc, char** argv) {
     for (int i = 1; i < argc; ++i) {
         if (!strcmp(argv[i], "-f") || !strcmp(argv[i], "--format")) {
             args.format = argv[++i];
+
+            if (strcmp(argv[i], "jpg") != 0 ||
+                strcmp(argv[i], "png") != 0 ||
+                strcmp(argv[i], "bmp") != 0 ||
+                strcmp(argv[i], "tga") != 0 ||
+                strcmp(argv[i], "raw") != 0) {
+                fprintf(stderr, "Unknown Format: %s\n", args.format);
+                return args;
+            }
+
         } else if (!strcmp(argv[i], "-o") || !strcmp(argv[i], "--outfile")) {
             args.outfile = argv[++i];
         } else {
@@ -70,7 +80,7 @@ int main(int argc, char** argv) {
 
     img = stbi_load(args.image, &width, &height, &channels, 0);
     if (img == NULL) {
-        fprintf(stderr, "%s File Not Found\n", args.image);
+        fprintf(stderr, "File Not Found: %s\n", args.image);
         goto cleanup;
     }
 
@@ -104,6 +114,10 @@ int main(int argc, char** argv) {
         stbi_write_bmp(args.outfile, width, height, channels, vga_img);
     } else if (!strcmp(args.format, "tga")) {
         stbi_write_tga(args.outfile, width, height, channels, vga_img);
+    } else if (!strcmp(args.format, "raw")) {
+        FILE* outfile = fopen(args.outfile, "wb");
+        fwrite(vga_img, sizeof(uint8_t), img_size, outfile);
+        fclose(outfile);
     }
 
 cleanup:
