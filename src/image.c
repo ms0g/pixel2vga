@@ -29,7 +29,7 @@ bool loadImage(Image* img, const char* name) {
     return true;
 }
 
-bool createImage(Image* img, int width, int height, int channels, enum ImageFormat format) {
+bool createImage(Image* img, int width, int height, int channels, ImageFormat format) {
     img->width = width;
     img->height = height;
     img->channels = channels;

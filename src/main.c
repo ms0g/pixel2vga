@@ -96,7 +96,7 @@ int main(int argc, char** argv) {
     rv = image.load(&image, args.image);
     if (!rv) goto cleanup;
 
-    enum ImageFormat format = (!strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg")) ? IMAGE_FORMAT_JPG :
+    ImageFormat format = (!strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg")) ? IMAGE_FORMAT_JPG :
                               !strcmp(args.format, "png") ? IMAGE_FORMAT_PNG :
                               !strcmp(args.format, "bmp") ? IMAGE_FORMAT_BMP :
                               !strcmp(args.format, "tga") ? IMAGE_FORMAT_TGA : IMAGE_FORMAT_RAW;
