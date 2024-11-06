@@ -48,7 +48,7 @@ static const Args parseArgs(int argc, char** argv) {
                 strcmp(args.format, "bmp") != 0 &&
                 strcmp(args.format, "tga") != 0 &&
                 strcmp(args.format, "raw") != 0) {
-                fprintf(stderr, "Unknown Format: %s\n", args.format);
+                fprintf(stderr, "Error: Unknown Format: %s\n", args.format);
                 return args;
             }
         } else if (!strcmp(argv[i], "-o") || !strcmp(argv[i], "--outfile")) {
