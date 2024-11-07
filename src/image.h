@@ -13,10 +13,10 @@ typedef enum ImageFormat {
     IMAGE_FORMAT_RAW
 } ImageFormat;
 
-typedef enum ImageType {
-    IMAGE_TYPE_STB_ALLOCATED,
-    IMAGE_TYPE_CUSTOM_ALLOCATED
-} ImageType;
+typedef enum AllocationType {
+    ALLOCATION_TYPE_STB_ALLOCATED,
+    ALLOCATION_TYPE_CUSTOM_ALLOCATED
+} AllocationType;
 
 typedef struct Image {
     int width;
@@ -24,7 +24,7 @@ typedef struct Image {
     int channels;
     size_t size;
     ImageFormat format;
-    ImageType type;
+    AllocationType aType;
     uint8_t* pData;
     bool (*load)(struct Image*, const char*);
     bool (*new)(struct Image*, int, int, int, ImageFormat);

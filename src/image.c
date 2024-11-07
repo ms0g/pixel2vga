@@ -26,7 +26,7 @@ bool loadImage(Image* img, const char* name) {
     }
 
     img->size = img->width * img->height * img->channels;
-    img->type = IMAGE_TYPE_STB_ALLOCATED;
+    img->aType = ALLOCATION_TYPE_STB_ALLOCATED;
 
     return true;
 }
@@ -36,7 +36,7 @@ bool createImage(Image* img, int width, int height, int channels, ImageFormat fo
     img->height = height;
     img->channels = channels;
     img->format = format;
-    img->type = IMAGE_TYPE_CUSTOM_ALLOCATED;
+    img->aType = ALLOCATION_TYPE_CUSTOM_ALLOCATED;
     img->size = width * height * channels;
     img->pData = (uint8_t*) malloc(img->size);
 
@@ -74,11 +74,11 @@ void writeImage(Image* img, const char* name, int quality) {
 void freeImage(Image* img) {
     if (img->pData == NULL) return;
 
-    switch (img->type) {
-        case IMAGE_TYPE_STB_ALLOCATED:
+    switch (img->aType) {
+        case ALLOCATION_TYPE_STB_ALLOCATED:
             stbi_image_free(img->pData);
             break;
-        case IMAGE_TYPE_CUSTOM_ALLOCATED:
+        case ALLOCATION_TYPE_CUSTOM_ALLOCATED:
             free(img->pData);
             break;
     }
