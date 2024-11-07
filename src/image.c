@@ -48,7 +48,7 @@ bool createImage(Image* img, int width, int height, int channels, ImageFormat fo
     return true;
 }
 
-void writeImage(Image* img, const char* name, int quality) {
+void writeImage(const Image* img, const char* name, int quality) {
     switch (img->format) {
         case IMAGE_FORMAT_JPG:
             stbi_write_jpg(name, img->width, img->height, img->channels, img->pData, quality ? quality: DEFAULT_JPG_QUALITY);
