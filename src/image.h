@@ -28,7 +28,7 @@ typedef struct Image {
     uint8_t* pData;
     bool (*load)(struct Image*, const char*);
     bool (*new)(struct Image*, int, int, int, ImageFormat);
-    void (*write)(struct Image*, const char*);
+    void (*write)(struct Image*, const char*, int);
 } Image;
 
 void initImage(Image* img);
@@ -37,7 +37,7 @@ bool loadImage(Image* img, const char* name);
 
 bool createImage(Image* img, int width, int height, int channels, ImageFormat format);
 
-void writeImage(Image* img, const char* name);
+void writeImage(Image* img, const char* name, int quality);
 
 void freeImage(Image* img);
 

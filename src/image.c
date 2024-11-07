@@ -7,6 +7,8 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+static const int DEFAULT_JPG_QUALITY = 100;
+
 void initImage(Image* img) {
     memset(img, 0, sizeof(Image));
 
@@ -46,10 +48,10 @@ bool createImage(Image* img, int width, int height, int channels, ImageFormat fo
     return true;
 }
 
-void writeImage(Image* img, const char* name) {
+void writeImage(Image* img, const char* name, int quality) {
     switch (img->format) {
         case IMAGE_FORMAT_JPG:
-            stbi_write_jpg(name, img->width, img->height, img->channels, img->pData, 100);
+            stbi_write_jpg(name, img->width, img->height, img->channels, img->pData, quality ? quality: DEFAULT_JPG_QUALITY);
             break;
         case IMAGE_FORMAT_PNG:
             stbi_write_png(name, img->width, img->height, img->channels, img->pData, img->width * img->channels);

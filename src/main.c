@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "vga.h"
 #include "image.h"
 
@@ -15,13 +16,14 @@ typedef struct Args {
     char* format;
     char* image;
     char* outfile;
+    int quality;
 } Args;
 
 static const Args parseArgs(int argc, char** argv) {
     static const char* usage = "OVERVIEW: A RGB to VGA color converter\n\n"
                                "USAGE: pixel2vga [options] <image file>\n\n"
                                "OPTIONS:\n"
-                               "  -f, --format          File format[jpg/png/bmp/tga/raw]\n"
+                               "  -f, --format          File format[jpg <quality 0-100>?/png/bmp/tga/raw]\n"
                                "  -o, --outfile         Output file name\n"
                                "  -h, --help            Display available options\n"
                                "  -v, --version         Display the version of this program\n";
@@ -51,6 +53,10 @@ static const Args parseArgs(int argc, char** argv) {
                 fprintf(stderr, "Error: Unknown Format: %s\n", args.format);
                 return args;
             }
+
+            int tmp = i;
+            args.quality = (int)strtol(argv[++tmp], NULL, 10);
+
         } else if (!strcmp(argv[i], "-o") || !strcmp(argv[i], "--outfile")) {
             args.outfile = argv[++i];
         } else {
@@ -61,7 +67,7 @@ static const Args parseArgs(int argc, char** argv) {
     return args;
 }
 
-void processImage(const Image* inImg, const Image* outImg) {
+static void processImage(const Image* inImg, const Image* outImg) {
     for (uint8_t* p = inImg->pData, * pv = outImg->pData;
          p != inImg->pData + inImg->size;
          p += inImg->channels, pv += inImg->channels) {
@@ -106,7 +112,7 @@ int main(int argc, char** argv) {
 
     processImage(&image, &vgaImg);
 
-    vgaImg.write(&vgaImg, args.outfile);
+    vgaImg.write(&vgaImg, args.outfile, args.quality);
 
 cleanup:
     freeImage(&image);
