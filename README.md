@@ -30,6 +30,11 @@ Change JPG quality
 ```
 <img src="assets/pris2561.jpg" alt="image" width="402" height="auto">
 
+```bash
+➜  ~ pixel2vga -f jpg 10 -o pris25610.jpg pris.jpg
+```
+<img src="assets/pris25610.jpg" alt="image" width="402" height="auto">
+
 ## License
 This project is licensed under the BSD 3-Clause License. See the LICENSE file for details.
 
