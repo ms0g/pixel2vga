@@ -16,7 +16,7 @@ OVERVIEW: A RGB to VGA Color converter
 USAGE: pixel2vga [options] <image file>
 
 OPTIONS:
-  -f, --format          File format[jpg/png/bmp/tga/raw]
+  -f, --format          File format[jpg <quality 0-100>?/png/bmp/tga/raw]
   -o, --outfile         Output file name
   -h, --help            Display available options
   -v, --version         Display the version of this program
