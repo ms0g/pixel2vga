@@ -3,10 +3,10 @@
 ## Overview
 pixel2vga is a command-line tool designed to convert RGB Color values to the VGA 256-Color palette.
 
-<img src="assets/lenna.png" alt="image" width="402" height="auto"> <img src="assets/lenna_vga.png" alt="image" width="402" height="auto">
-<img src="assets/johnlennon.png" alt="image" width="402" height="auto"> <img src="assets/johnlennon_vga.png" alt="image" width="402" height="auto">
-<img src="assets/neo.jpg" alt="image" width="402" height="auto"> <img src="assets/neo_vga.jpg" alt="image" width="402" height="auto">
-<img src="assets/pris.jpg" alt="image" width="402" height="auto"> <img src="assets/pris_vga.jpg" alt="image" width="402" height="auto">
+<img src="assets/lenna.png" alt="image" width="402" height="auto"> <img src="assets/lenna256.png" alt="image" width="402" height="auto">
+<img src="assets/johnlennon.png" alt="image" width="402" height="auto"> <img src="assets/johnlennon256.png" alt="image" width="402" height="auto">
+<img src="assets/neo.jpg" alt="image" width="402" height="auto"> <img src="assets/neo256100.jpg" alt="image" width="402" height="auto">
+<img src="assets/pris.jpg" alt="image" width="402" height="auto"> <img src="assets/pris256100.jpg" alt="image" width="402" height="auto">
 
 ## Usage
 ```bash
@@ -21,14 +21,17 @@ OPTIONS:
   -h, --help            Display available options
   -v, --version         Display the version of this program
 ```
-## Run
 ```bash
-➜  ~ pixel2vga -f jpg -o neo_vga.jpg neo.jpg
+➜  ~ pixel2vga -f jpg -o neo256100.jpg neo.jpg
 ```
-## License
+Change JPG quality
+```bash
+➜  ~ pixel2vga -f jpg 1 -o pris2561.jpg pris.jpg
+```
+<img src="assets/pris2561.jpg" alt="image" width="402" height="auto">
 
+## License
 This project is licensed under the BSD 3-Clause License. See the LICENSE file for details.
 
 ## Credits
-
 Developed by M. Sami Gürpınar
