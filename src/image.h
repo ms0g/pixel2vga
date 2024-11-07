@@ -14,8 +14,8 @@ typedef enum ImageFormat {
 } ImageFormat;
 
 typedef enum ImageType {
-    IMAGE_TYPE_IN,
-    IMAGE_TYPE_OUT
+    IMAGE_TYPE_STB_ALLOCATED,
+    IMAGE_TYPE_CUSTOM_ALLOCATED
 } ImageType;
 
 typedef struct Image {
