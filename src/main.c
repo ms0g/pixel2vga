@@ -70,7 +70,7 @@ static const Args parseArgs(int argc, char** argv) {
 static void processImage(const Image* inImg, const Image* outImg) {
     for (uint8_t* p = inImg->pData, * pv = outImg->pData;
          p != inImg->pData + inImg->size;
-         p += inImg->channels, pv += inImg->channels) {
+         p += inImg->channels, pv += outImg->channels) {
         uint8_t r = *p;
         uint8_t g = *(p + 1);
         uint8_t b = *(p + 2);
