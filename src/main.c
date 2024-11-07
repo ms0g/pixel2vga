@@ -88,18 +88,18 @@ static void processImage(const Image* inImg, const Image* outImg) {
 }
 
 int main(int argc, char** argv) {
-    Image image;
+    Image img;
     Image vgaImg;
     bool rv;
 
-    initImage(&image);
+    initImage(&img);
     initImage(&vgaImg);
 
     const Args args = parseArgs(argc, argv);
 
     if (args.image == NULL) goto cleanup;
 
-    rv = image.load(&image, args.image);
+    rv = img.load(&img, args.image);
     if (!rv) goto cleanup;
 
     ImageFormat format = (!strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg")) ? IMAGE_FORMAT_JPG :
@@ -107,15 +107,15 @@ int main(int argc, char** argv) {
                               !strcmp(args.format, "bmp") ? IMAGE_FORMAT_BMP :
                               !strcmp(args.format, "tga") ? IMAGE_FORMAT_TGA : IMAGE_FORMAT_RAW;
 
-    rv = vgaImg.new(&vgaImg, image.width, image.height, image.channels, format);
+    rv = vgaImg.new(&vgaImg, img.width, img.height, img.channels, format);
     if (!rv) goto cleanup;
 
-    processImage(&image, &vgaImg);
+    processImage(&img, &vgaImg);
 
     vgaImg.write(&vgaImg, args.outfile, args.quality);
 
 cleanup:
-    freeImage(&image);
+    freeImage(&img);
     freeImage(&vgaImg);
 
     return 0;
