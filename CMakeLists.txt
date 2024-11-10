@@ -3,6 +3,10 @@ project(pixel2vga C)
 
 set(CMAKE_C_STANDARD 11)
 
+if (APPLE)
+    add_compile_options(-gdwarf-4)
+endif ()
+
 set(STB_IMAGE_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/libs/stb_image/include)
 
 set(SOURCES
