@@ -13,9 +13,9 @@
 #define VERSION STRINGIFY(VERSION_MAJOR) "." STRINGIFY(VERSION_MINOR) "." STRINGIFY(VERSION_PATCH)
 
 typedef struct Args {
-    char* format;
-    char* image;
-    char* outfile;
+    const char* format;
+    const char* image;
+    const char* outfile;
     int quality;
 } Args;
 
