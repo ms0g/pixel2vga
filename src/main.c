@@ -55,7 +55,7 @@ static const Args parseArgs(int argc, char** argv) {
             }
 
             int tmp = i;
-            args.quality = (int)strtol(argv[++tmp], NULL, 10);
+            args.quality = (int) strtol(argv[++tmp], NULL, 10);
 
         } else if (!strcmp(argv[i], "-o") || !strcmp(argv[i], "--outfile")) {
             args.outfile = argv[++i];
@@ -103,9 +103,9 @@ int main(int argc, char** argv) {
     if (!rv) goto cleanup;
 
     ImageFormat format = (!strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg")) ? IMAGE_FORMAT_JPG :
-                              !strcmp(args.format, "png") ? IMAGE_FORMAT_PNG :
-                              !strcmp(args.format, "bmp") ? IMAGE_FORMAT_BMP :
-                              !strcmp(args.format, "tga") ? IMAGE_FORMAT_TGA : IMAGE_FORMAT_RAW;
+                         !strcmp(args.format, "png") ? IMAGE_FORMAT_PNG :
+                         !strcmp(args.format, "bmp") ? IMAGE_FORMAT_BMP :
+                         !strcmp(args.format, "tga") ? IMAGE_FORMAT_TGA : IMAGE_FORMAT_RAW;
 
     rv = vgaImg.new(&vgaImg, img.width, img.height, img.channels, format);
     if (!rv) goto cleanup;
