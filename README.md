@@ -1,6 +1,4 @@
 # pixel2vga
-
-## Overview
 pixel2vga is a command-line tool designed to convert RGB Color values to the VGA 256-Color palette.
 
 <img src="assets/lenna.png" alt="image" width="402" height="auto"> <img src="assets/lenna256.png" alt="image" width="402" height="auto">
