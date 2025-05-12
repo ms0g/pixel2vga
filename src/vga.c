@@ -262,22 +262,22 @@ static const float vga_palette[256][3] = {
         {F(0x00), F(0x00), F(0x00)},
 };
 
-const Color vgaClamp(uint8_t r, uint8_t g, uint8_t b) {
-    float rf = (float) r;
-    float gf = (float) g;
-    float bf = (float) b;
+Color vgaClamp(const uint8_t r, const uint8_t g, const uint8_t b) {
+    const float rf = r;
+    const float gf = g;
+    const float bf = b;
 
     float closest = +INFINITY;
 
-    int index;
+    int index = 0;
     for (int i = 0; i < 248; i++) {
         const float* sample = vga_palette[i];
 
-        float rs = sample[0];
-        float gs = sample[1];
-        float bs = sample[2];
+        const float rs = sample[0];
+        const float gs = sample[1];
+        const float bs = sample[2];
 
-        float dst = sqrtf(powf(rs - rf, 2) + powf(gs - gf, 2) + powf(bs - bf, 2));
+        const float dst = sqrtf(powf(rs - rf, 2) + powf(gs - gf, 2) + powf(bs - bf, 2));
 
         if (dst < closest) {
             closest = dst;

@@ -71,9 +71,9 @@ static void processImage(const Image* inImg, const Image* outImg) {
     for (uint8_t* p = inImg->pData, * pv = outImg->pData;
          p != inImg->pData + inImg->size;
          p += inImg->channels, pv += outImg->channels) {
-        uint8_t r = *p;
-        uint8_t g = *(p + 1);
-        uint8_t b = *(p + 2);
+        const uint8_t r = *p;
+        const uint8_t g = *(p + 1);
+        const uint8_t b = *(p + 2);
 
         const Color vgaColor = vgaClamp(r, g, b);
 
@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
     rv = img.load(&img, args.image);
     if (!rv) goto cleanup;
 
-    ImageFormat format = (!strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg")) ? IMAGE_FORMAT_JPG :
+    const ImageFormat format = (!strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg")) ? IMAGE_FORMAT_JPG :
                          !strcmp(args.format, "png") ? IMAGE_FORMAT_PNG :
                          !strcmp(args.format, "bmp") ? IMAGE_FORMAT_BMP :
                          !strcmp(args.format, "tga") ? IMAGE_FORMAT_TGA : IMAGE_FORMAT_RAW;
