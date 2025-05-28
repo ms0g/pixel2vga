@@ -1,7 +1,6 @@
 #include "image.h"
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -31,7 +30,7 @@ bool loadImage(Image* img, const char* name) {
     return true;
 }
 
-bool createImage(Image* img, int width, int height, int channels, ImageFormat format) {
+bool createImage(Image* img, const int width, const int height, const int channels, const ImageFormat format) {
     img->width = width;
     img->height = height;
     img->channels = channels;
@@ -48,7 +47,7 @@ bool createImage(Image* img, int width, int height, int channels, ImageFormat fo
     return true;
 }
 
-void writeImage(const Image* img, const char* name, int quality) {
+void writeImage(const Image* img, const char* name, const int quality) {
     switch (img->format) {
         case IMAGE_FORMAT_JPG:
             stbi_write_jpg(name, img->width, img->height, img->channels, img->pData,

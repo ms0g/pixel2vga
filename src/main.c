@@ -19,7 +19,7 @@ typedef struct Args {
     int quality;
 } Args;
 
-static const Args parseArgs(int argc, char** argv) {
+static Args parseArgs(int argc, char** argv) {
     static const char* usage = "OVERVIEW: A RGB to VGA color converter\n\n"
                                "USAGE: pixel2vga [options] <image file>\n\n"
                                "OPTIONS:\n"
@@ -102,7 +102,7 @@ int main(int argc, char** argv) {
     rv = img.load(&img, args.image);
     if (!rv) goto cleanup;
 
-    const ImageFormat format = (!strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg")) ? IMAGE_FORMAT_JPG :
+    const ImageFormat format = !strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg") ? IMAGE_FORMAT_JPG :
                          !strcmp(args.format, "png") ? IMAGE_FORMAT_PNG :
                          !strcmp(args.format, "bmp") ? IMAGE_FORMAT_BMP :
                          !strcmp(args.format, "tga") ? IMAGE_FORMAT_TGA : IMAGE_FORMAT_RAW;
