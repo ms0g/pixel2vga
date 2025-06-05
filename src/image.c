@@ -16,6 +16,18 @@ void initImage(Image* img) {
     img->write = writeImage;
 }
 
+ImageFormat getImageFormat(const char* ext) {
+    return !strcmp(ext, "jpg") || !strcmp(ext, "jpeg")
+               ? IMAGE_FORMAT_JPG
+               : !strcmp(ext, "png")
+                     ? IMAGE_FORMAT_PNG
+                     : !strcmp(ext, "bmp")
+                           ? IMAGE_FORMAT_BMP
+                           : !strcmp(ext, "tga")
+                                 ? IMAGE_FORMAT_TGA
+                                 : IMAGE_FORMAT_RAW;
+}
+
 bool loadImage(Image* img, const char* name) {
     img->pData = stbi_load(name, &img->width, &img->height, &img->channels, 0);
 

@@ -33,6 +33,8 @@ typedef struct Image {
 
 void initImage(Image* img);
 
+ImageFormat getImageFormat(const char* ext);
+
 bool loadImage(Image* img, const char* name);
 
 bool createImage(Image* img, int width, int height, int channels, ImageFormat format);

@@ -102,10 +102,7 @@ int main(int argc, char** argv) {
     rv = img.load(&img, args.image);
     if (!rv) goto cleanup;
 
-    const ImageFormat format = !strcmp(args.format, "jpg") || !strcmp(args.format, "jpeg") ? IMAGE_FORMAT_JPG :
-                         !strcmp(args.format, "png") ? IMAGE_FORMAT_PNG :
-                         !strcmp(args.format, "bmp") ? IMAGE_FORMAT_BMP :
-                         !strcmp(args.format, "tga") ? IMAGE_FORMAT_TGA : IMAGE_FORMAT_RAW;
+    const ImageFormat format = getImageFormat(args.format);
 
     rv = vgaImg.new(&vgaImg, img.width, img.height, img.channels, format);
     if (!rv) goto cleanup;
